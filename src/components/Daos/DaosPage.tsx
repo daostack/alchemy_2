@@ -253,10 +253,10 @@ class DaosPage extends React.Component<IProps, IState> {
                 <h2 data-test-id="header-all-daos">
                   {i18next.t("Your DAOs")}
                 </h2>
-                <div className={css.emailAlertsWrapper} onClick={this.registerForMonitoring} >
+                {process.env.NETWORK !== "xdai" && <div className={css.emailAlertsWrapper} onClick={this.registerForMonitoring} >
                   <div className={cn("fa fa-envelope", css.emailIcon)} />
                   {i18next.t("Email Alerts")}
-                </div>
+                </div>}
               </div>
             </div>
 
