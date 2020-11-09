@@ -69,5 +69,7 @@
   "No Proposals Found": "No proposals found whose title contains the given text.  Note the filter is case-sensitive.",
   "Type and press Enter ": "Type and press Enter or Tab to filter proposals by title",
   "Unregistered Plugin Proposal": "This proposal is in unregistered plugin",
-  "Unregistered": "Unregistered"
+  "Unregistered": "Unregistered",
+  "Created": "Created",
+  "Executed": "Executed"
 }

@@ -4,7 +4,7 @@ import AccountPopup from "components/Account/AccountPopup";
 import AccountProfileName from "components/Account/AccountProfileName";
 import ProposalCountdown from "components/Shared/ProposalCountdown";
 import FollowButton from "components/Shared/FollowButton";
-import { humanProposalTitle, ensureHttps } from "lib/util";
+import { humanProposalTitle, ensureHttps, formatFriendlyDateForLocalTimezone, safeMoment } from "lib/util";
 import Analytics from "lib/analytics";
 import { Page } from "pages";
 import * as React from "react";
@@ -304,6 +304,17 @@ class ProposalDetailsPage extends React.Component<IProps, IState> {
                 <BoostAmount detailView expired={expired} proposalState={proposalState} />
               </div>
 
+            </div>
+            <div className={css.eventHistory}>
+              <div className={css.event}>
+                <div className={css.label}>{i18next.t("Created")}:</div>
+                <div className={css.datetime}>{formatFriendlyDateForLocalTimezone(safeMoment(proposalState.createdAt))}</div>
+              </div>
+              {proposalState.executedAt ?
+                <div className={css.event}>
+                  <div className={css.label}>{i18next.t("Executed")}:</div>
+                  <div className={css.datetime}>{formatFriendlyDateForLocalTimezone(safeMoment(proposalState.executedAt))}</div>
+                </div> : ""}
             </div>
           </div>
         </div>
