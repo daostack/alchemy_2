@@ -122,14 +122,47 @@ class CreatePluginRegistrarProposal extends React.Component<IProps, IState> {
     this.formModalService.saveCurrentValues();
   }
 
-  public handleChangePlugin = (e: any) => {
+  /**
+   * For some reason, Formik checkbox value does not get updated when "checked" Field attribute is changed programmatically.
+   * This is a hack to change the values manually.
+   * @param {Function} setFieldValue Formik built-in function to set field value
+   * @param {number} requiredPermissions The requiredPermissions
+   */
+  private setPermissions = (setFieldValue: any, requiredPermissions: number) => {
+    switch (requiredPermissions) {
+      case PluginPermissions.All:
+        setFieldValue("permissions.registerPlugins", true);
+        setFieldValue("permissions.changeConstraints", true);
+        setFieldValue("permissions.upgradeController", true);
+        setFieldValue("permissions.genericCall", true);
+        break;
+      case PluginPermissions.CanRegisterPlugins:
+        setFieldValue("permissions.registerPlugins", true);
+        break;
+      case PluginPermissions.CanAddRemoveGlobalConstraints:
+        setFieldValue("permissions.changeConstraints", true);
+        break;
+      case PluginPermissions.CanUpgradeController:
+        setFieldValue("permissions.upgradeController", true);
+        break;
+      case PluginPermissions.CanCallDelegateCall:
+        setFieldValue("permissions.genericCall", true);
+        break;
+    }
+  }
+
+  public handleChangePlugin = (e: any, setFieldValue: any) => {
     const arc = getArc();
     try {
       // If we know about this contract then require the minimum permissions for it
       const contractInfo = arc.getContractInfo(e.target.value);
-      this.setState({ requiredPermissions: REQUIRED_PLUGIN_PERMISSIONS[contractInfo.name] });
+      const requiredPermissions = REQUIRED_PLUGIN_PERMISSIONS[contractInfo.name];
+      this.setState({ requiredPermissions: requiredPermissions });
+      this.setPermissions(setFieldValue, requiredPermissions);
       /* eslint-disable-next-line no-empty */
-    } catch (e) { }
+    } catch (e) {
+      this.setState({ requiredPermissions: 0 });
+    }
   }
 
   public async handleSubmit(values: IFormValues, { setSubmitting }: any): Promise<void> {
@@ -415,7 +448,7 @@ class CreatePluginRegistrarProposal extends React.Component<IProps, IState> {
                           onChange={(e: any) => {
                             // call the built-in handleChange
                             handleChange(e);
-                            this.handleChangePlugin(e);
+                            this.handleChangePlugin(e, setFieldValue);
                           }}
                         />
                       </div>
