@@ -337,7 +337,7 @@ class ProposalDetailsPage extends React.Component<IProps, IState> {
         {this.state.showShareModal ?
           <SocialShareModal
             closeHandler={this.closeShareModal}
-            url={`https://${targetedNetwork()}.alchemy.do/dao/${daoState.address}/proposal/${proposalState.id}`}
+            url={`https://${targetedNetwork() !== "main" ? `${targetedNetwork()}.` : ""}alchemy.do/dao/${daoState.address}/proposal/${proposalState.id}`}
           /> : ""
         }
       </div>
