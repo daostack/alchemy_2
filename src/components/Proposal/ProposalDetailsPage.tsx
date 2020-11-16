@@ -4,7 +4,7 @@ import AccountPopup from "components/Account/AccountPopup";
 import AccountProfileName from "components/Account/AccountProfileName";
 import ProposalCountdown from "components/Shared/ProposalCountdown";
 import FollowButton from "components/Shared/FollowButton";
-import { humanProposalTitle, ensureHttps, formatFriendlyDateForLocalTimezone, safeMoment } from "lib/util";
+import { humanProposalTitle, ensureHttps, formatFriendlyDateForLocalTimezone, safeMoment, targetedNetwork } from "lib/util";
 import Analytics from "lib/analytics";
 import { Page } from "pages";
 import * as React from "react";
@@ -334,11 +334,11 @@ class ProposalDetailsPage extends React.Component<IProps, IState> {
           /> : ""
         }
 
-        {this.state.showShareModal ?
+        {this.state.showShareModal &&
           <SocialShareModal
             closeHandler={this.closeShareModal}
-            url={`https://alchemy.daostack.io/dao/${daoState.address}/proposal/${proposalState.id}`}
-          /> : ""
+            url={`https://${targetedNetwork()}.alchemy.do/dao/${daoState.address}/proposal/${proposalState.id}`}
+          />
         }
       </div>
     );
