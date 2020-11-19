@@ -3,6 +3,7 @@ node_js: 12.18.4
 addons:
   apt:
     update: true
+  chrome: stable
 bundler_args: "--jobs=4 --retry=3"
 
 before_install:
@@ -12,9 +13,6 @@ before_install:
   - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
   - export COVERALLS_SERVICE_JOB_ID=$( TRAVIS_JOB_ID )
   - export COVERALLS_SERVICE_NAME="travis-ci"
-
-addons:
-  chrome: stable
 
 jobs:
   include:
@@ -60,7 +58,7 @@ jobs:
         - echo 'npm run build-travis' && echo -en 'travis_fold:start:script.4\\r'
         - npm run build-travis
         - echo -en 'travis_fold:end:script.4\\r'
-        
+
     - stage: tests
       name: "ts/es lint"
       script: npm run lint

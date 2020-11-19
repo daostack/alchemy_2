@@ -82,5 +82,6 @@
     "plugins": ["@typescript-eslint", "react"],
     "parserOptions": {
       "project": "./tsconfig.eslint.json"
-    }
+    },
+    "ignorePatterns": ["test/**/*.conf.js"]
 }
