@@ -1,15 +1,6 @@
 import { hideCookieAcceptWindow, goToUrl } from "./utils";
 
-const chai = require("chai");
-
-global.expect = chai.expect;
-chai.Should();
-
 describe("Home page feed", () => {
-  before(async () => {
-    chai.Should();
-  });
-
   it("Displays message and all DAOs when not logged in ", async () => {
     await goToUrl("http://127.0.0.1:3000/feed");
     const title = await browser.getTitle();
