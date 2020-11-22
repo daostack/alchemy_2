@@ -1,9 +1,9 @@
 import * as uuid from "uuid";
-import { LATEST_ARC_VERSION, hideCookieAcceptWindow, ITestAddresses, gotoDaoPlugins } from "./utils";
+import { LATEST_ARC_VERSION, hideCookieAcceptWindow, gotoDaoPlugins } from "./utils";
 
 describe("Token Trade Proposals", () => {
   let daoAddress: string;
-  let addresses: ITestAddresses;
+  let addresses: any;
 
   before(() => {
     const { daos } = require("@daostack/test-env-experimental/daos.json");

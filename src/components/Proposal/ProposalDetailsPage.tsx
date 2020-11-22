@@ -4,7 +4,7 @@ import AccountPopup from "components/Account/AccountPopup";
 import AccountProfileName from "components/Account/AccountProfileName";
 import ProposalCountdown from "components/Shared/ProposalCountdown";
 import FollowButton from "components/Shared/FollowButton";
-import { humanProposalTitle, ensureHttps } from "lib/util";
+import { humanProposalTitle, ensureHttps, formatFriendlyDateForLocalTimezone, safeMoment } from "lib/util";
 import Analytics from "lib/analytics";
 import { Page } from "pages";
 import * as React from "react";
@@ -305,6 +305,17 @@ class ProposalDetailsPage extends React.Component<IProps, IState> {
               </div>
 
             </div>
+            <div className={css.eventHistory}>
+              <div className={css.event}>
+                <div className={css.label}>{i18next.t("Created")}:</div>
+                <div className={css.datetime}>{formatFriendlyDateForLocalTimezone(safeMoment(proposalState.createdAt))}</div>
+              </div>
+              {proposalState.executedAt ?
+                <div className={css.event}>
+                  <div className={css.label}>{i18next.t("Executed")}:</div>
+                  <div className={css.datetime}>{formatFriendlyDateForLocalTimezone(safeMoment(proposalState.executedAt))}</div>
+                </div> : ""}
+            </div>
           </div>
         </div>
 
@@ -326,7 +337,7 @@ class ProposalDetailsPage extends React.Component<IProps, IState> {
         {this.state.showShareModal ?
           <SocialShareModal
             closeHandler={this.closeShareModal}
-            url={`https://alchemy.daostack.io/dao/${daoState.address}/proposal/${proposalState.id}`}
+            url={`${process.env.BASE_URL}/dao/${daoState.address}/proposal/${proposalState.id}`}
           /> : ""
         }
       </div>

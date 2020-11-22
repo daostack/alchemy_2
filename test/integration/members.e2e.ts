@@ -1,4 +1,3 @@
-import * as chai from "chai";
 import { getTestAddresses, userAddresses, ITestAddresses, goToUrl } from "./utils";
 
 describe("Members page", () => {
@@ -6,7 +5,6 @@ describe("Members page", () => {
   let daoAddress: string;
 
   before(async () => {
-    chai.Should();
     addresses = getTestAddresses();
     daoAddress = addresses.dao.Avatar.toLowerCase();
   });

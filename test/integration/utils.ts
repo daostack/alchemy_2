@@ -11,11 +11,6 @@ const settings: IArcOptions & { txSenderServiceUrl: string } = {
   txSenderServiceUrl: "https://tx-sender-service.herokuapp.com/send-tx",
 };
 
-const chai = require("chai");
-
-global.expect = chai.expect;
-chai.Should();
-
 export const LATEST_ARC_VERSION = require("@daostack/migration-experimental/package.json")["dependencies"]["@daostack/arc-experimental"];
 
 export const userAddresses = [

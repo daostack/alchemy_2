@@ -235,6 +235,32 @@ button.disabled {
   flex-grow: 1;
   min-width: 320px;
   max-width: 40%;
+
+  .eventHistory {
+    display: table;
+    width: 100%;
+    margin-left: 20px;
+
+    .event {
+      font-size: 16px;
+      display: table-row;
+      white-space: nowrap;
+
+      .label,
+      .datetime {
+        display: table-cell;
+        padding-bottom: 6px;
+      }
+
+      .label {
+        color: $grey-blue;
+      }
+
+      .datetime {
+        color: $gray-1;
+      }
+    }
+  }
 }
 
 .createdBy {
