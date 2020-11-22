@@ -1,7 +1,4 @@
-import * as chai from "chai";
 import { getTestAddresses, ITestAddresses, hideCookieAcceptWindow, goToUrl } from "./utils";
-
-chai.should();
 
 describe("Header redemptions button", () => {
   it("shouldn't be there if the user isn't logged in", async () => {

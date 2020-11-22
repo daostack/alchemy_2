@@ -2,11 +2,6 @@ import * as uuid from "uuid";
 import { hideCookieAcceptWindow, gotoDaoPlugins, submit, setCalendarDate } from "./utils";
 import * as moment from "moment";
 
-const chai = require("chai");
-
-global.expect = chai.expect;
-chai.Should();
-
 describe("Proposals", () => {
 
   beforeEach(async () => {
