@@ -5,7 +5,7 @@ import * as moment from "moment";
 describe("Proposals", () => {
 
   beforeEach(async () => {
-    await gotoDaoPlugins("0x257a7385fec13e6e9b7414da641f57975e2872e4");
+    await gotoDaoPlugins("0x818c94e48df484a1e8014b00ee1faa7ac5a6c724");
   });
 
   it("Create a Generic Plugin scheme and vote for it", async () => {
