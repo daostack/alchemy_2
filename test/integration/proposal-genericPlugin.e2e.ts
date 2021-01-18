@@ -41,13 +41,9 @@ describe("Proposals", () => {
     await customOption.click();
 
     const customContractToCallInput = await $("input[id=\"contractToCall\"]");
-      console.log(22)
     await customContractToCallInput.waitForExist();
-      console.log(223)
     await customContractToCallInput.click();
-    console.log(1)
     await customContractToCallInput.setValue("0x543Ff227F64Aa17eA132Bf9886cAb5DB55DCAddf");
-    console.log(2)
 
     const activationTimeInput = await $("input[name=\"GenericScheme.votingParams.activationTime\"]");
     await activationTimeInput.waitForExist();
