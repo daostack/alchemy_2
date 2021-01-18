@@ -5,7 +5,7 @@ import * as moment from "moment";
 describe("Proposals", () => {
 
   beforeEach(async () => {
-    await gotoDaoPlugins("0x257a7385fec13e6e9b7414da641f57975e2872e4");
+    await gotoDaoPlugins("0x818c94e48df484a1e8014b00ee1faa7ac5a6c724");
   });
 
   it("Create a Generic Plugin scheme and vote for it", async () => {
@@ -41,9 +41,13 @@ describe("Proposals", () => {
     await customOption.click();
 
     const customContractToCallInput = await $("input[id=\"contractToCall\"]");
+      console.log(22)
     await customContractToCallInput.waitForExist();
+      console.log(223)
     await customContractToCallInput.click();
+    console.log(1)
     await customContractToCallInput.setValue("0x543Ff227F64Aa17eA132Bf9886cAb5DB55DCAddf");
+    console.log(2)
 
     const activationTimeInput = await $("input[name=\"GenericScheme.votingParams.activationTime\"]");
     await activationTimeInput.waitForExist();
